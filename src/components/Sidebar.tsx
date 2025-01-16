@@ -1,5 +1,5 @@
 "use client"
-import { BookmarkCheck, Home, PanelLeftClose, PanelRightClose, UserRoundCog, UsersRound } from 'lucide-react'
+import { BookmarkCheck, Home, PanelLeftClose, PanelRightClose, UserRoundCog } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
