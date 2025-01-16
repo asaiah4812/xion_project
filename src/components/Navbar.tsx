@@ -13,7 +13,7 @@ const Navbar = () => {
   return (
     <div className='flex justify-between items-center px-4 py-2 border-b border-slate-700 bg-slate-800 fixed top-0 left-0 right-0 z-50 '>
       <Link href={'/'} className='flex flex-1 items-center gap-2 text-white'>
-      <FerrisWheel /> SkillConnect
+      <FerrisWheel /> SkillBridge
       </Link>
       <div className='flex flex-1  items-center gap-2 bg-slate-700 px-5 py-4 rounded-2xl'>
       <SearchSlash className='text-slate-400' />

@@ -4,7 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Sidebar from "@/components/Sidebar";
 
-const dreamer = Poppins({
+const skill = Poppins({
   subsets: ["latin"],
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
 });
@@ -21,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${dreamer.className} antialiased bg-slate-800`}>
+      <body className={`${skill.className} antialiased bg-slate-800`}>
         <Navbar />
         <main className="pt-20 min-h-screen flex">
           <Sidebar />
