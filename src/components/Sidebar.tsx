@@ -37,7 +37,7 @@ const Sidebar = () => {
     const [showSide, setShowSide] = useState<boolean>(false)
     const pathname:string = usePathname()
   return (
-    <div className={` ${!showSide ? 'w-[20%]' : 'w-[5%]'} border-r border-slate-700 transition-all ease duration-200 sticky top-0 left-0`}>
+    <div className={` ${!showSide ? 'w-[20%]' : 'w-[15%] md:w-[5%]'} border-r border-slate-700 transition-all ease duration-200 sticky top-0 left-0`}>
       <div className={`${ showSide ? 'justify-center' : 'justify-between' } flex items-center p-4`}>
         <h2 className={`${ showSide ? "hidden" : "block text-slate-400" } text-xl font-bold`}>Menu</h2>
         <button onClick={() => setShowSide(prev => !prev)}>{showSide ? <PanelRightClose className='text-white' /> : <PanelLeftClose className='text-white' />}</button>
@@ -47,7 +47,7 @@ const Sidebar = () => {
         <div className='relative w-8 h-8 rounded-md'>
             <Image src={'/me.jpg'} alt="profile" fill={true} className=''/>
         </div>
-        <span className={`${showSide ? "hidden" : 'block text-white font-medium'}`}>My Feed</span>
+        <span className={`${showSide ? "hidden" : 'hidden lg:block text-white font-medium'}`}>My Feed</span>
         </Link>
         {
             Links.map(link => (
@@ -56,7 +56,7 @@ const Sidebar = () => {
                 key={link.id} 
                 href={link.url}>
                     <span className='text-white'>{link.icon}</span>
-                    <span className={`${showSide ? 'hidden' : 'block text-white'}`}>{link.name}</span>
+                    <span className={`${showSide ? 'hidden' : 'hidden md:block text-white'}`}>{link.name}</span>
                 </Link>
             ))
         }
