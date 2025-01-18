@@ -3,7 +3,14 @@ import { ArrowBigDown, ArrowBigUp, Bookmark, EllipsisVertical, MessageSquareText
 import Image from 'next/image'
 import React, { useState } from 'react'
 
-const Card = ({item}:any) => {
+interface Item {
+  title: string;
+  src: string;
+  likes: number;
+  comments: number;
+}
+
+const Card = ({ item }: { item: Item }) => {
     const[count, setCount] = useState(0)
     const handleUpVote = () => {
         setCount(count + 1)

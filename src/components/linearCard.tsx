@@ -18,7 +18,7 @@ const items = [
   {
     id: 1,
     url: '/img.jpg',
-    title: 'Accordion',
+    title: 'Project Development',
     description:
       'Immerse yourself in our cutting-edge interactive gallery, designed to showcase a diverse array of visual content with unparalleled clarity and style. This feature allows users to effortlessly navigate through high-resolution images, from awe-inspiring landscapes to intimate portraits and abstract art. With smooth transitions, intuitive controls, and responsive design, our gallery adapts to any device, ensuring a seamless browsing experience. Dive deeper into each piece with expandable information panels, offering insights into the artist, technique, and story behind each image. ',
     tags: ['Sunrise', 'Mountains', 'Golden', 'Scenic', 'Inspiring'],
@@ -34,7 +34,7 @@ const items = [
     id: 3,
     url: '/img2.jpg',
 
-    title: 'Image Mouse Trail',
+    title: 'Digital Training',
     description: `Transform your browsing experience with our mesmerizing Image Mouse Trail feature. As you move your cursor across the screen, watch in wonder as a trail of carefully curated images follows in its wake, creating a dynamic and engaging visual spectacle. This innovative feature goes beyond mere aesthetics; it's an interactive showcase of your content, products, or artwork. Each image in the trail can be clickable, leading to detailed views or related content, turning casual mouse movements into opportunities for discovery.`,
     tags: ['Pathway', 'Adventure', 'Peaks', 'Challenging', 'Breathtaking'],
   },
@@ -42,7 +42,7 @@ const items = [
 export default function LinearCard() {
   return (
     <div className='flex gap-4 py-10'>
-      {items.map((item, i) => {
+      {items.map((item) => {
         return (
           <>
             <Dialog

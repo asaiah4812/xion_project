@@ -1,6 +1,5 @@
 import React, {
     createContext,
-    useContext,
     useState,
     useEffect,
     ReactNode,
@@ -15,13 +14,13 @@ import React, {
   
   const ModalContext = createContext<ModalContextProps | undefined>(undefined);
   
-  const useModal = () => {
-    const context = useContext(ModalContext);
-    if (!context) {
-      throw new Error('useModal must be used within a ModalProvider');
-    }
-    return context;
-  };
+  // const useModal = () => {
+  //   const context = useContext(ModalContext);
+  //   if (!context) {
+  //     throw new Error('useModal must be used within a ModalProvider');
+  //   }
+  //   return context;
+  // };
   
   interface FramerModalProps {
     children: ReactNode;
@@ -55,7 +54,7 @@ import React, {
       return () => {
         document.removeEventListener('keydown', handleKeyDown);
       };
-    }, [open]);
+    }, [setOpen, open]);
     return (
       <ModalContext.Provider value={{ open, setOpen }}>
         <AnimatePresence>

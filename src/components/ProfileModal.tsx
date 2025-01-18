@@ -1,15 +1,10 @@
 "use client";
 
-import { CircleHelp, Settings, SquareArrowUpRight, UserRound, UserRoundPen, WalletMinimal, Zap } from 'lucide-react'
+import { CircleHelp, Settings, UserRound, UserRoundPen, WalletMinimal, Zap } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
-import React, { useEffect, useState } from 'react'
-import {
-  Abstraxion,
-  useAbstraxionAccount,
-  useAbstraxionSigningClient,
-  useModal
-} from "@burnt-labs/abstraxion";
+import React from 'react'
+import { useAbstraxionAccount } from "@burnt-labs/abstraxion";
 import { Button } from "@burnt-labs/ui";
 
 interface ProfProps {
@@ -33,11 +28,12 @@ const ProfileLink:ProfProps[] = [
         icon: <UserRoundPen />,
         url: 'account-details/'
     },
+ 
     {
         id:4,
-        name:"Wallet ",
+        name:"Wallet",
         icon: <WalletMinimal />,
-        url: ''
+        url: '/'
     },
 
     {
@@ -48,48 +44,9 @@ const ProfileLink:ProfProps[] = [
     }
 ]
 
+
 const ProfileModal = () => {
-    const { data: { bech32Address }, isConnected, isConnecting } = useAbstraxionAccount();
-    const { client } = useAbstraxionSigningClient();
-    const [, setShow] = useModal();
-    const [executeResult, setExecuteResult] = useState<any>(null);
-    const [loading, setLoading] = useState(false);
-
-    // watch isConnected and isConnecting
-    useEffect(() => {
-        console.log({ isConnected, isConnecting });
-    }, [isConnected, isConnecting]);
-    const seatContractAddress = "xion1wtgpsd99zm87r58fwzfuw0d0n9se53vszqvluh8lmuh83266lv4s8pgcpp";
-    const claimSeat = async () => {
-        setLoading(true);
-        const msg = {
-            sales: {
-                claim_item: {
-                    token_id: String(Math.floor(Date.now() / 1000)),
-                    owner: bech32Address,
-                    token_uri: "",
-                    extension: {},
-                },
-            },
-        };
-
-        try {
-            const claimRes = await client?.execute(
-                bech32Address,
-                seatContractAddress,
-                msg,
-                "auto",
-                "",
-                [],
-            );
-
-            setExecuteResult(claimRes);
-        } catch (error) {
-            console.error(error);
-        } finally {
-            setLoading(false);
-        }
-    };
+    const { data: { bech32Address } } = useAbstraxionAccount();
 
     return (
         <div className='absolute top-16 bg-slate-700 p-2 ring-1 ring-slate-500 w-[290px] rounded-xl -left-56' >

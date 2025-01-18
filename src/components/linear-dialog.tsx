@@ -16,16 +16,14 @@ import {
   Transition,
   Variant,
 } from 'framer-motion';
-// import { createPortal } from 'react-dom';
 import { cn } from '@/lib/utils';
-// import useClickOutside from '@/hooks/useClickOutside';
 import { XIcon } from 'lucide-react';
 
 interface DialogContextType {
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
   uniqueId: string;
-  triggerRef: React.RefObject<HTMLDivElement>;
+  triggerRef: React.RefObject<HTMLDivElement | null>; // Updated to allow null
 }
 
 const DialogContext = React.createContext<DialogContextType | null>(null);
@@ -46,7 +44,7 @@ type DialogProviderProps = {
 function DialogProvider({ children, transition }: DialogProviderProps) {
   const [isOpen, setIsOpen] = useState(false);
   const uniqueId = useId();
-  const triggerRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLDivElement | null>(null); // Updated to allow null
 
   const contextValue = useMemo(
     () => ({ isOpen, setIsOpen, uniqueId, triggerRef }),
@@ -77,7 +75,7 @@ type DialogTriggerProps = {
   children: React.ReactNode;
   className?: string;
   style?: React.CSSProperties;
-  triggerRef?: React.RefObject<HTMLDivElement>;
+  triggerRef?: React.RefObject<HTMLDivElement>; // Changed to allow only HTMLDivElement or null
 };
 
 function DialogTrigger({
@@ -161,7 +159,7 @@ function DialogContent({ children, className, style }: DialogContent) {
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
     };
-  }, [setIsOpen, firstFocusableElement, lastFocusableElement]);
+  }, [setIsOpen, firstFocusableElement, lastFocusableElement, isOpen]);
 
   useEffect(() => {
     if (isOpen) {
@@ -223,7 +221,6 @@ function DialogContainer({ children, className }: DialogContainerProps) {
   }, []);
 
   if (!mounted) return null;
-  // createPortal(
   return (
     <AnimatePresence initial={false} mode='sync'>
       {isOpen && (
@@ -243,8 +240,6 @@ function DialogContainer({ children, className }: DialogContainerProps) {
       )}
     </AnimatePresence>
   );
-  //   document.body
-  // )
 }
 
 type DialogTitleProps = {
